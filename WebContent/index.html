@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome to ALLOTHEATER</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body>
+	<div>
+		<h1>
+			<center>Welcome to AlloTheater</center>
+		</h1>
+		<fieldset id="field" ng-controller="searchController">
+			<!-- action="../RestPower/rest/theaters/search" method="POST" -->
+			<!--../RestPower/rest/movies/search-->
+			<form class="main_form" method="POST" ng-submit="submit()">
+				<table class="main_table">
+					<tr>
+						<th colspan="2">
+							<h2>Look for a city</h2>
+						</th>
+						<th colspan="2">
+							<h2>Are you an owner ?</h2>
+						</th>
+					</tr>
+					<tr>
+						<td><select name="city" ng-model='city'>
+								<option value="">Select a city</option>
+								<option value="{{city}}" ng-repeat="city in cities">{{city}}</option>
+						</select></td>
+						<td><input type="submit" value="Search" id="button" /></td>
+						<td colspan="2">
+							<center>
+								<a href="login.html" id="login">Login to your account</a>
+							</center>
+						</td>
+					</tr>
+				</table>
+
+			</form>
+			<br>
+			<br>
+			<hr>
+			<br>
+			<br>
+			<p ng-if="movie.length == 0">
+				<em>No movies in this city.</em>
+			</p>
+			<div ng-repeat="mo in movie">
+				<a href='movie.html#{{mo.id}}'>{{mo.title}}</a>
+				<br>
+				<ul>
+					<li ng-repeat="sch in schedule[mo.id]">{{sch.theater.name}} (from {{sch.startDate}} to {{sch.endDate}}): {{sch.day1}}
+						{{sch.time1}}, {{sch.day2}} {{sch.time2}}, {{sch.day3}} {{sch.time3}}</li>
+				</ul>
+			</div>
+	</div>
+	</fieldset>
+	<script type="text/javascript">
+  		var myapp = angular.module('myapp', []);
+
+  		myapp.controller('searchController', function($scope, $http) {
+  			$scope.movie = [];
+  			$http.get('http://localhost:8080/RestPower/rest/theaters/search').success(function(response){
+  	  			var theaters = Array.isArray(response.theater) ? response.theater : [response.theater];
+  	  			// Création de la liste des villes en évitant les doublons
+  				$scope.cities = [];
+  				for (var t of theaters) {
+  					if (!$scope.cities.includes(t.city))
+  						$scope.cities.push(t.city);
+  				}
+  			});
+  			
+  			$scope.submit = function() {
+
+    	  	    if ($scope.city) {
+	    	  	  	$http.get('http://localhost:8080/RestPower/rest/movies/city/' + $scope.city).success(function(response){
+	        	  	  	if (!response)
+	        	  	  		$scope.movie = [];
+	        	  	  	else {
+		  					$scope.movie = Array.isArray(response.movie) ? response.movie : [response.movie];
+		
+		  					// Gets shedules for each movie
+		  					$scope.schedule = {};
+		  					for (var mo of $scope.movie)
+		  	  				{
+		  						$http.get('http://localhost:8080/RestPower/rest/schedules/movie/' + mo.id + '/'+$scope.city).success(function(response){
+		  							var sch = Array.isArray(response.schedule) ? response.schedule : [response.schedule];
+		  							$scope.schedule[sch[0].movie.id] = sch;
+		  	  	    	  	  	});
+		  	  				}
+	        	  	  	}
+	    	  	  	});
+    	  	    }
+    	    };
+  			
+  		});
+
+  		
+
+
+  		
+  </script>
+</body>
+</html>

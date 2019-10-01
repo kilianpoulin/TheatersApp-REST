@@ -1,0 +1,155 @@
+@charset "ISO-8859-1";
+
+#field{
+	border-radius 12px;
+	padding:4%;
+	margin-right:auto;
+	margin-left:auto;
+}
+
+#button	        
+{ 
+  background-color: #ff9999;
+  border : 1px solid #ff9999;
+  padding-top: 5px;
+  padding-bottom:5px;
+  padding-right:10px;
+  padding-left: 10px;  
+  width: 100%;   
+  height : 30px;
+  box-sizing: border-box;  
+  font-family: PT sans;
+  font-size: 13px; 
+  font-weight: bold; 
+  letter-spacing: 2px; 
+  margin-top: 10px;
+  text-transform: uppercase;
+  color: white; 
+}
+
+h2{
+	color:#809fff;
+}
+
+#homebutton	        
+{ 
+  background-color: #99ccff;
+  border : 1px solid #99ccff;
+  padding-top: 5px;
+  padding-bottom:5px;
+  padding-right:10px;
+  padding-left: 10px;  
+  width: 100%;   
+  height : 30px;
+  box-sizing: border-box;  
+  font-family: PT sans;
+  font-size: 13px; 
+  font-weight: bold; 
+  letter-spacing: 2px; 
+  margin-top: 10px;
+  text-transform: uppercase;
+  color: white; 
+}
+
+.buttonlink{
+	text-decoration:none;
+	color:white;
+}
+
+.buttonlink a:hover {
+	text-decoration:none;
+	color:white;
+}
+
+.main_table{
+	width:100%;
+}
+
+.main_table td{
+	width:33%;
+}
+
+.main_form select{
+	width:80%;
+	height:30px;
+	padding-left:10px;
+	border-radius:8x;
+}
+
+.main_form a {
+	font-size:20px;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+.main_form a:hover{
+	color:red;
+	font-weight:bold;
+}
+
+.login_form{
+	width:55%;
+	margin-top:3%;
+	margin-left:2%;
+}
+
+.login_form label{
+	font-size:17px;
+}
+.login_form input{
+	width:200px;
+	height:20px;
+	font-size:16px;
+	margin-left:10%;
+}
+
+
+.sch_form{
+	float:center;	
+	margin-right:auto;
+	margin-left:auto;
+}
+
+.sch_form label{
+	font-size:17px;
+}
+.sch_form input{
+	width:200px;
+	height:20px;
+	font-size:16px;
+	margin-left:10%;
+	border-radius:4px;
+	margin-bottom:10px;
+}
+
+.sch_form select{
+	width:200px;
+	height:30px;
+	font-size:14px;
+	margin-left:10%;
+	border-radius:4px;
+	margin-bottom:10px;
+}
+
+.number_movie{
+	height:20px;
+	font-size:16px;
+	border-radius:4px;
+	margin-bottom:3%;
+}
+
+.textarea_movie{
+	width:400px;
+	font-size:16px;
+	border-radius:4px;
+	margin-bottom:3%;
+	height:100px;
+}
+
+.input_movie{
+	width:220px;
+	font-size:16px;
+	border-radius:4px;
+	margin-bottom:3%;
+	height:20px;
+}

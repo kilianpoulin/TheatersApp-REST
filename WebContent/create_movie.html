@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+ 	// Redirection s'il n'est pas connecté
+	if (!document.cookie.includes("sessionId"))
+		window.location.replace("login.html");
+</script>
+<meta charset="ISO-8859-1">
+<title>Create a movie</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body>
+	<h1>
+		<center>Create a movie</center>
+		<a href="index.html" class="buttonlink"><input type="button" id="homebutton" value="Home page"></a>
+	</h1>
+
+	<fieldset id="field" style="width: 50%;">
+		<form action="../RestPower/rest/movies" method="POST">
+			<table>
+				<tr>
+					<td><label for="title">Title</label></td>
+					<td><input name="title" class="input_movie" /></td>
+				</tr>
+				<tr>
+					<td><label for="summary">Summary</label></td>
+					<td><TEXTAREA NAME="summary" COLS=40 ROWS=6 class="textarea_movie"></TEXTAREA></td>
+				</tr>
+				<tr>
+					<td><label for="duration">Duration</label></td>
+					<td><input type="number" name="duration" class="number_movie" /></td>
+				</tr>
+				<tr>
+					<td><label for="language">Language</label></td>
+					<td><input name="language" class="input_movie" /></td>
+				</tr>
+				<tr>
+					<td><label for="director">Director</label></td>
+					<td><input name="director" class="input_movie" /></td>
+				</tr>
+				<tr>
+					<td><label for="actors">Actors (separated by commas)</label></td>
+					<td><TEXTAREA NAME="actors" COLS=40 ROWS=6 class="textarea_movie"></TEXTAREA></td>
+				</tr>
+				<tr>
+					<td><label for="minAge">Min age required</label></td>
+					<td><input type="number" name="minAge" class="number_movie" /></td>
+				</tr>
+				<tr>
+					<td colspan="2>"><input type="submit" value="Submit" id="button" /></td>
+				</tr>
+			</table>
+		</form>
+	</fieldset>
+</body>
+</html>

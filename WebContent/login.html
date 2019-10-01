@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Login to ALLOTHEATER</title>
+   <meta charset="ISO-8859-1">
+   <link rel="stylesheet" type="text/css" href="style.css">
+ </head>
+<body>
+
+
+	<h1><center>Welcome dear owner, please login</center>
+	<a href="index.html" class="buttonlink"><input type="button" id="homebutton" value="Home page"></a></h1>
+	<br>
+<fieldset id="field" style="width:50%;"><center>
+	<div id="error" style="color:red;"></div>
+  <form action="../RestPower/rest/sessions/login" method="POST" class="login_form">
+  <table>
+  	<tr>
+  		<td><label for="username">Username</label></td>
+  		<td><input name="username" /></td>
+  	</tr>
+  	<tr>
+  		<td><label for="password">Password</label></td>
+  		<td><input type="password" name="password" /></td>
+  	</tr>
+  	<tr>
+  		<td colspan="2"><input type="submit" value="Login" id="button"/></td>
+  	</tr>
+  </table></center>
+  
+  </form>
+  </fieldset>
+  <script type="text/javascript">
+  		
+  		var info = window.location.toString().split('#')[1]
+  		if(info == "error"){
+  			document.getElementById("error").innerText = "Invalid credentials !"
+  		} else {
+  			document.getElementById("error").innerText = "";
+  		}
+
+  </script>
+</body>
+</html> 

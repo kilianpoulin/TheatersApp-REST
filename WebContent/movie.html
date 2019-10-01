@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+<meta charset="ISO-8859-1">
+<title>AlloTheater - Movie</title>
+<link rel="stylesheet" type="text/css" href="style.css"> 	
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+ 
+</head>
+<body ng-controller="searchController">
+	<h1><center>Movie {{result.title}}</center>
+	<a href="index.html" class="buttonlink"><input type="button" id="homebutton" value="Home page"></a></h1>
+	<fieldset id="field" style="width:50%;">
+	<form action="../RestPower/rest/schedules" method="POST" class="sch_form">
+		<table>
+			<tr>
+				<th>Title</th>
+				<td>{{result.title}}</td>
+			</tr>
+			<tr>
+				<th>Summary</th>
+				<td>{{result.summary}}</td>
+			</tr>
+			<tr>
+				<th>Director</th>
+				<td>{{result.director}}</td>
+			</tr>
+			<tr>
+				<th>Actors</th>
+				<td>{{result.actors.join(', ')}}</td>
+			</tr>
+			<tr>
+				<th>Language</th>
+				<td>{{result.language}}</td>
+			</tr>
+			<tr>
+				<th>Duration</th>
+				<td>{{result.duration}} minutes</td>
+			</tr>
+			<tr>
+				<th>Minimum age</th>
+				<td>{{result.minage}} years old</td>
+			</tr>
+		</table>
+	</form>
+	</fieldset>
+	<script type="text/javascript">
+  		var myapp = angular.module('myapp', []);
+
+  		var id = window.location.toString().split('#')[1]
+  		myapp.controller('searchController', function($scope, $http){
+  			var add = 'http://localhost:8080/RestPower/rest/movies/'+id;
+  			$http.get(add).success(function(response){
+  				$scope.result = response;
+  			});
+  		});
+
+  </script>
+</body>
+</html>
